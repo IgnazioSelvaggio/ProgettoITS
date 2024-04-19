@@ -1,0 +1,28 @@
+name: .NET NuGet Package CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-publish:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0'  # Sostituisci con la versione del tuo progetto .NET
+   
+    - name: Restore dependencies
+      run: dotnet restore TestGit/TestGit.sln
+
+    - name: Build
+      run: dotnet build TestGit/TestGit.sln --no-restore
+
+    - name: Test
+      run: dotnet test TestGit/TestGit.sln --no-build
