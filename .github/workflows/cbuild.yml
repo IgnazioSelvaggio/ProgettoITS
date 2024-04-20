@@ -13,4 +13,4 @@ jobs:
     - name: Compile
       run: gcc -o mioprogramma mioprogramma.c
     - name: Run
-      run: ./myprogram
+      run: ./mioprogramma
